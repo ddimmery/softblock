@@ -1,0 +1,219 @@
+!    -*- f90 -*-
+! Note: the context of this file is case sensitive.
+
+python module nbpMatch ! in
+    interface  ! in :nbpMatch
+        subroutine nbpwrap(n,wt,nmatch,prcn) ! in :nbpMatch:nbpwrap.f
+            integer :: n
+            integer dimension(n*n),depend(n) :: wt
+            integer intent(out),dimension(n) :: nmatch
+            integer :: prcn=64
+        end subroutine nbpwrap
+        subroutine sap(n,m,cc,nbl,index_bn,zfw,nmatch,basis,mem,ka,kb,sm,tma,tmb,y1,y2,dplus,dminus,sup,eps) ! in :optblock:fcorematch.f
+            integer, optional,check((len(index_bn)-1)>=n),depend(index_bn) :: n=(len(index_bn)-1)
+            integer, optional,check((len(cc))/(2)>=m),depend(cc) :: m=(len(cc))/(2)
+            integer dimension(2 * m) :: cc
+            integer dimension(2 * m),depend(m) :: nbl
+            integer dimension(n + 1) :: index_bn
+            integer :: zfw
+            integer dimension(n),depend(n) :: nmatch
+            integer dimension(n),depend(n) :: basis
+            integer dimension(n),depend(n) :: mem
+            integer dimension(n),depend(n) :: ka
+            integer dimension(n),depend(n) :: kb
+            integer dimension(n),depend(n) :: sm
+            integer dimension(n),depend(n) :: tma
+            integer dimension(n),depend(n) :: tmb
+            double precision dimension(n),depend(n) :: y1
+            double precision dimension(n),depend(n) :: y2
+            double precision dimension(n),depend(n) :: dplus
+            double precision dimension(n),depend(n) :: dminus
+            real :: sup
+            real :: eps
+        end subroutine sap
+        subroutine augmnt(n,top,nmatch,cc,basis,mem,ka,kb,sm,tma,tmb,y1,y2,dplus,dminus,sup,eps,nbl,index_bn,dbest,n1,n2,nka,nkb,ncard,jret1) ! in :optblock:fcorematch.f
+            integer, optional,check(len(nmatch)>=n),depend(nmatch) :: n=len(nmatch)
+            integer :: top
+            integer dimension(n) :: nmatch
+            integer dimension(n*(n-1)),depend(n) :: cc
+            integer dimension(n),depend(n) :: basis
+            integer dimension(n),depend(n) :: mem
+            integer dimension(n),depend(n) :: ka
+            integer dimension(n),depend(n) :: kb
+            integer dimension(n),depend(n) :: sm
+            integer dimension(n),depend(n) :: tma
+            integer dimension(n),depend(n) :: tmb
+            double precision dimension(n),depend(n) :: y1
+            double precision dimension(n),depend(n) :: y2
+            double precision dimension(n),depend(n) :: dplus
+            double precision dimension(n),depend(n) :: dminus
+            real :: sup
+            real :: eps
+            integer dimension(n*(n-1)),depend(n) :: nbl
+            integer dimension(n + 1),depend(n) :: index_bn
+            double precision :: dbest
+            integer :: n1
+            integer :: n2
+            integer :: nka
+            integer :: nkb
+            integer :: ncard
+            integer :: jret1
+        end subroutine augmnt
+        subroutine expand(n,m,top,nmatch,cc,basis,mem,ka,kb,sm,tma,tmb,y1,y2,dplus,dminus,sup,eps,nbl,index_bn,nbest,dbest) ! in :optblock:fcorematch.f
+            integer, optional,check(len(nmatch)>=n),depend(nmatch) :: n=len(nmatch)
+            integer :: m
+            integer :: top
+            integer dimension(n) :: nmatch
+            integer dimension(n*(n-1)),depend(n) :: cc
+            integer dimension(n),depend(n) :: basis
+            integer dimension(n),depend(n) :: mem
+            integer dimension(n),depend(n) :: ka
+            integer dimension(n),depend(n) :: kb
+            integer dimension(n),depend(n) :: sm
+            integer dimension(n),depend(n) :: tma
+            integer dimension(n),depend(n) :: tmb
+            double precision dimension(n),depend(n) :: y1
+            double precision dimension(n),depend(n) :: y2
+            double precision dimension(n),depend(n) :: dplus
+            double precision dimension(n),depend(n) :: dminus
+            real :: sup
+            real :: eps
+            integer dimension(n*(n-1)),depend(n) :: nbl
+            integer dimension(n + 1),depend(n) :: index_bn
+            integer :: nbest
+            double precision :: dbest
+        end subroutine expand
+        subroutine grow(n,top,nmatch,cc,basis,mem,ka,kb,sm,tma,tmb,y1,y2,dplus,dminus,sup,eps,nbl,index_bn,nbest,dbest) ! in :optblock:fcorematch.f
+            integer, optional,check(len(nmatch)>=n),depend(nmatch) :: n=len(nmatch)
+            integer :: top
+            integer dimension(n) :: nmatch
+            integer dimension(n*(n-1)),depend(n) :: cc
+            integer dimension(n),depend(n) :: basis
+            integer dimension(n),depend(n) :: mem
+            integer dimension(n),depend(n) :: ka
+            integer dimension(n),depend(n) :: kb
+            integer dimension(n),depend(n) :: sm
+            integer dimension(n),depend(n) :: tma
+            integer dimension(n),depend(n) :: tmb
+            double precision dimension(n),depend(n) :: y1
+            double precision dimension(n),depend(n) :: y2
+            double precision dimension(n),depend(n) :: dplus
+            double precision dimension(n),depend(n) :: dminus
+            real :: sup
+            real :: eps
+            integer dimension(n*(n-1)),depend(n) :: nbl
+            integer dimension(n + 1),depend(n) :: index_bn
+            integer :: nbest
+            double precision :: dbest
+        end subroutine grow
+        subroutine ograph(n,zfw,eps,index_bn,nbl,cc,sm,tma,tmb,nmatch,mem,basis,ka,kb,dplus,dminus,y1,y2) ! in :optblock:fcorematch.f
+            integer, optional,check((len(index_bn)-1)>=n),depend(index_bn) :: n=(len(index_bn)-1)
+            integer :: zfw
+            real :: eps
+            integer dimension(n + 1) :: index_bn
+            integer dimension(n*(n-1)),depend(n) :: nbl
+            integer dimension(n*(n-1)),depend(n) :: cc
+            integer dimension(n),depend(n) :: sm
+            integer dimension(n),depend(n) :: tma
+            integer dimension(n),depend(n) :: tmb
+            integer dimension(n),depend(n) :: nmatch
+            integer dimension(n),depend(n) :: mem
+            integer dimension(n),depend(n) :: basis
+            integer dimension(n),depend(n) :: ka
+            integer dimension(n),depend(n) :: kb
+            double precision dimension(n),depend(n) :: dplus
+            double precision dimension(n),depend(n) :: dminus
+            double precision dimension(n),depend(n) :: y1
+            double precision dimension(n),depend(n) :: y2
+        end subroutine ograph
+        subroutine rprint(a,b,d) ! in :optblock:fcorematch.f
+            integer :: a
+            integer :: b
+            double precision :: d
+        end subroutine rprint
+        subroutine scan1(nb1,n,sup,cc,basis,mem,ka,kb,sm,tma,tmb,y1,y2,dplus,dminus,nbl,index_bn) ! in :optblock:fcorematch.f
+            integer :: nb1
+            integer, optional,check(len(basis)>=n),depend(basis) :: n=len(basis)
+            real :: sup
+            integer dimension(n*(n-1)),depend(n) :: cc
+            integer dimension(n) :: basis
+            integer dimension(n),depend(n) :: mem
+            integer dimension(n),depend(n) :: ka
+            integer dimension(n),depend(n) :: kb
+            integer dimension(n),depend(n) :: sm
+            integer dimension(n),depend(n) :: tma
+            integer dimension(n),depend(n) :: tmb
+            double precision dimension(n),depend(n) :: y1
+            double precision dimension(n),depend(n) :: y2
+            double precision dimension(n),depend(n) :: dplus
+            double precision dimension(n),depend(n) :: dminus
+            integer dimension(n*(n-1)),depend(n) :: nbl
+            integer dimension(n + 1),depend(n) :: index_bn
+        end subroutine scan1
+        subroutine scan2(nb,n,sup,cc,basis,mem,ka,kb,sm,tma,tmb,y1,y2,dplus,dminus,nbl,index_bn) ! in :optblock:fcorematch.f
+            integer :: nb
+            integer, optional,check(len(basis)>=n),depend(basis) :: n=len(basis)
+            real :: sup
+            integer dimension(n*(n-1)),depend(n) :: cc
+            integer dimension(n) :: basis
+            integer dimension(n),depend(n) :: mem
+            integer dimension(n),depend(n) :: ka
+            integer dimension(n),depend(n) :: kb
+            integer dimension(n),depend(n) :: sm
+            integer dimension(n),depend(n) :: tma
+            integer dimension(n),depend(n) :: tmb
+            double precision dimension(n),depend(n) :: y1
+            double precision dimension(n),depend(n) :: y2
+            double precision dimension(n),depend(n) :: dplus
+            double precision dimension(n),depend(n) :: dminus
+            integer dimension(n*(n-1)),depend(n) :: nbl
+            integer dimension(n + 1),depend(n) :: index_bn
+        end subroutine scan2
+        subroutine shrink(n,top,nmatch,cc,basis,mem,ka,kb,sm,tma,tmb,y1,y2,dplus,dminus,sup,eps,nbl,index_bn,nbest,dbest,nb,n1,n2,nb2,nka,nkb) ! in :optblock:fcorematch.f
+            integer, optional,check(len(nmatch)>=n),depend(nmatch) :: n=len(nmatch)
+            integer :: top
+            integer dimension(n) :: nmatch
+            integer dimension(n*(n-1)),depend(n) :: cc
+            integer dimension(n),depend(n) :: basis
+            integer dimension(n),depend(n) :: mem
+            integer dimension(n),depend(n) :: ka
+            integer dimension(n),depend(n) :: kb
+            integer dimension(n),depend(n) :: sm
+            integer dimension(n),depend(n) :: tma
+            integer dimension(n),depend(n) :: tmb
+            double precision dimension(n),depend(n) :: y1
+            double precision dimension(n),depend(n) :: y2
+            double precision dimension(n),depend(n) :: dplus
+            double precision dimension(n),depend(n) :: dminus
+            real :: sup
+            real :: eps
+            integer dimension(n*(n-1)),depend(n) :: nbl
+            integer dimension(n + 1),depend(n) :: index_bn
+            integer :: nbest
+            double precision :: dbest
+            integer :: nb
+            integer :: n1
+            integer :: n2
+            integer :: nb2
+            integer :: nka
+            integer :: nkb
+        end subroutine shrink
+        subroutine start(n,ncard,top,ce,nb,index_bn,nmatch,y1) ! in :optblock:fcorematch.f
+            integer, optional,check((len(index_bn)-1)>=n),depend(index_bn) :: n=(len(index_bn)-1)
+            integer :: ncard
+            integer :: top
+            integer dimension(n*(n-1)),depend(n) :: ce
+            integer dimension(n*(n-1)),depend(n) :: nb
+            integer dimension(n + 1) :: index_bn
+            integer dimension(n),depend(n) :: nmatch
+            double precision dimension(n),depend(n) :: y1
+        end subroutine start
+        function dfloat(iarg) ! in :optblock:fcorematch.f
+            integer :: iarg
+            double precision :: dfloat
+        end function dfloat
+    end interface
+end python module optblock
+
+! This file was auto-generated with f2py (version:2).
+! See http://cens.ioc.ee/projects/f2py2e/
